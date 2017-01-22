@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+   <class name="br.com.onmyway.dom.entity.Trip" table="TRIP">
+      <meta attribute="class-description">
+      </meta>
+      <id name="id" type="int" column="ID">
+         <generator class="native"/>
+      </id>
+      <property name="endTime" column="END_TIME" type="timestamp"/>
+      <property name="finished" column="FINISHED" type="int"/>
+      
+      <property name="latitude" column="LATITUDE" type="double"/>
+      <property name="longitude" column="LONGITUDE" type="double"/>
+      
+      <many-to-one name="user" class="br.com.onmyway.dom.entity.User">
+			<column name="USER_ID" not-null="true"></column>
+	  </many-to-one>
+   </class>
+</hibernate-mapping>

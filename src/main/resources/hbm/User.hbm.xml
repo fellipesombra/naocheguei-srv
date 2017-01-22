@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+   <class name="br.com.onmyway.dom.entity.User" table="USER">
+      <id name="id" type="int" column="ID">
+         <generator class="native"/>
+      </id>
+      <property name="email" column="EMAIL" type="string"/>
+      <property name="password" column="PASSWORD" type="string"/>
+      <property name="name" column="NAME" type="string"/>
+      <property name="salt" column="SALT" type="string"/>
+      
+   </class>
+</hibernate-mapping>
