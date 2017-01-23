@@ -21,9 +21,9 @@ import br.com.onmyway.valueobject.Email;
 
 public class TripVerifierJob implements Job {
     
-    private static final String TRACK_ME_PAGE = "http://localhost:8080/onmyway/map.html?trip=";
-    private static final String SUBJECT = "TrackME - Go check friend %s !";
-    private static final String MESSAGE = "%s didn't arrive yet at his destination, you shoud check if he is ok!<br/><br/> Here it's a map of his last locations: "+TRACK_ME_PAGE+"%s";
+    private static final String NAOCHEGUEI_PAGE = "https://naocheguei.herokuapp.com/map.html?trip=";
+    private static final String SUBJECT = "ÑCheguei! - Entre em contato com %s !";
+    private static final String MESSAGE = "%s ainda não chegou no seu destino como havia programado. Tente falar com ele para ver se está tudo bem!<br/><br/> Aqui está o mapa mostrando por onde ele passou até o momento: "+NAOCHEGUEI_PAGE+"%s";
     
     private TripRepository tripDao = new TripDao();
     
