@@ -57,7 +57,13 @@ public class UserServiceREST {
         
 	Response response = null;
 	try {
-	    User user = userDao.findUserByEmail(email);
+	    User user = null;
+	    if(email == null || password == null){
+		user = new User();
+		user.setId(-1);
+		response = Response.status(Status.OK).entity(user).build();
+	    }
+	    user = userDao.findUserByEmail(email);
 	    if(user == null){
 		user = new User();
 		user.setId(-1);

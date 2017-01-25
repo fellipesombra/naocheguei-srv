@@ -12,8 +12,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class EmailBaseConfig {
 
-	private static final String PASSWORD_EMAIL_ONMYWAY = "zica1234";
-	private static final String EMAIL_ONMYWAY = "onmywayalert@gmail.com";
+	private static final String EMAIL_NAOCHEGUEI = "naocheguei@gmail.com";
 
 	private Properties mailServerProperties;
 	protected Session getMailSession;
@@ -34,7 +33,7 @@ public class EmailBaseConfig {
 	 */
 	protected void send(MimeMessage generateMailMessage) throws MessagingException {
 		Transport transport = getMailSession.getTransport("smtp");
-		transport.connect("smtp.gmail.com", EMAIL_ONMYWAY, PASSWORD_EMAIL_ONMYWAY);
+		transport.connect("smtp.gmail.com", EMAIL_NAOCHEGUEI, System.getenv("NAOCHEGUEI_EMAIL_PASSWORD"));
 		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
 		transport.close();
 	}

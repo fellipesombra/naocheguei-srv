@@ -1,7 +1,6 @@
 package br.com.onmyway.service.webservice;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -11,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -44,11 +44,11 @@ public class MapServiceREST {
     @GET
     @Path("/trip/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPathInfomration(@PathParam("id") String id) {
+    public Response getPathInfomration(@PathParam("id") String id, @QueryParam("finished") String finished) {
 
 	Response response = null;
 	try {
-	    List<Position> positions = positionRepository.findByTripId(Integer.valueOf(id));
+	    List<Position> positions = positionRepository.findByTripId(Integer.valueOf(id), Boolean.valueOf(finished));
 
 	    if(positions == null || positions.isEmpty()){
 		response = Response.status(Status.INTERNAL_SERVER_ERROR).entity("Nenhuma viagem encontrada").build();
@@ -75,7 +75,7 @@ public class MapServiceREST {
     @Path("/trip")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response startTrip(@FormParam("id") String userId, @FormParam("time") String time, @FormParam("lat") String lat, @FormParam("lng") String lng){
+    public Response startTrip(@FormParam("id") String userId, @FormParam("time") String time, @FormParam("lat") String lat, @FormParam("lng") String lng, @FormParam("transport") String transport){
 	Response response = null;
 	try {
 
@@ -90,6 +90,7 @@ public class MapServiceREST {
 	    trip.setLatitude(Double.valueOf(lat));
 	    trip.setLongitude(Double.valueOf(lng));
 	    trip.setUser(user);
+	    trip.setTransport(transport);
 
 	    Trip saveTrip = tripRepository.saveTrip(trip);
 

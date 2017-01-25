@@ -5,8 +5,6 @@ import java.util.Date;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import br.com.onmyway.valueobject.LatLng;
-
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Trip implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -17,6 +15,7 @@ public class Trip implements Serializable{
     private int finished;
     private double latitude;
     private double longitude;
+    private String transport;
 
     public int getId() {
 	return id;
@@ -64,6 +63,14 @@ public class Trip implements Serializable{
 
     public void setLongitude(double lng) {
         this.longitude = lng;
+    }
+
+    public String getTransport() {
+	return transport;
+    }
+
+    public void setTransport(String transport) {
+	this.transport = transport;
     }
     
 }

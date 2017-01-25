@@ -7,17 +7,18 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 
 import br.com.onmyway.dom.entity.Position;
-import br.com.onmyway.dom.entity.Trip;
 import br.com.onmyway.dom.repository.PositionRepository;
 import br.com.onmyway.util.HibernateUtil;
 
-public class PositionDao extends GenericDAOImpl<Position, Integer> implements
-	PositionRepository {
+public class PositionDao extends GenericDAOImpl<Position, Integer> implements PositionRepository {
 
     @Override
-    public List<Position> findByTripId(Integer id) {
+    public List<Position> findByTripId(Integer id, boolean finished) {
 	List<Position> person = null;
 	String sql = "SELECT p FROM Position p WHERE p.trip.id= :id";
+	if(finished){
+	    sql+=(" and p.trip.finished=1");
+	}
 	HibernateUtil.beginTransaction();
 	Query query = HibernateUtil.getSession().createQuery(sql)
 		.setParameter("id", id);

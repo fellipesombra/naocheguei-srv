@@ -7,7 +7,7 @@ import br.com.onmyway.dom.entity.Position;
 
 public interface PositionRepository extends GenericDAO<Position, Integer>{
 
-    public List<Position> findByTripId(Integer id);
+    public List<Position> findByTripId(Integer id, boolean finished);
     
     public List<Position> findAllPositions();
     
