@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping>
-   <class name="br.com.onmyway.dom.entity.Trip" table="TRIP">
+   <class name="br.com.fellipesombra.naocheguei.dom.entity.Trip" table="TRIP">
       <meta attribute="class-description">
       </meta>
       <id name="id" type="int" column="ID">
@@ -14,7 +14,7 @@
       <property name="latitude" column="LATITUDE" type="double"/>
       <property name="longitude" column="LONGITUDE" type="double"/>
       
-      <many-to-one name="user" class="br.com.onmyway.dom.entity.User">
+      <many-to-one name="user" class="br.com.fellipesombra.naocheguei.dom.entity.User">
 			<column name="USER_ID" not-null="true"></column>
 	  </many-to-one>
 	  
