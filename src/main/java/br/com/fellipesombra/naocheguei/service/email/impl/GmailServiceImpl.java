@@ -61,7 +61,7 @@ public final class GmailServiceImpl implements GmailService {
         	email.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(to));
 		}
         email.setSubject(subject);
-        email.setText(bodyText);
+        email.setContent(bodyText, "text/html");
         return email;
     }
 
