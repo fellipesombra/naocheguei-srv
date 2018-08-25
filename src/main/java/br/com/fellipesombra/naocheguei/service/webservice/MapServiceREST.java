@@ -133,7 +133,30 @@ public class MapServiceREST {
 	    Trip trip = tripRepository.findById(Integer.valueOf(tripId));
 	    Calendar cal = Calendar.getInstance();
 	    cal.setTime(trip.getEndTime());
-	    cal.add(Calendar.MINUTE, 30);
+	    cal.add(Calendar.MINUTE, 5);
+	    trip.setEndTime(cal.getTime());
+	    Trip tripSaved = tripRepository.updateTrip(trip);
+
+	    response = Response.status(Status.OK).entity(tripSaved).build();
+	} catch (Exception e) {
+	    response = Response.status(Status.INTERNAL_SERVER_ERROR)
+		    .entity("Erro ao recuperar viagem").build();
+	    e.printStackTrace();
+	}
+	return response;
+    }
+    
+    @GET
+    @Path("/trip/reduce/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response reduceTimeTrip(@PathParam("id") String tripId){
+	Response response = null;
+	try {
+	    
+	    Trip trip = tripRepository.findById(Integer.valueOf(tripId));
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(trip.getEndTime());
+	    cal.add(Calendar.MINUTE, -5);
 	    trip.setEndTime(cal.getTime());
 	    Trip tripSaved = tripRepository.updateTrip(trip);
 
